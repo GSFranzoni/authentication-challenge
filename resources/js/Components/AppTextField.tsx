@@ -11,7 +11,7 @@ import {
 type TextFieldProps = InputProps &
   PropsWithChildren & {
     label?: string;
-    hint?: string;
+    hint: string | undefined | false;
   };
 
 const AppTextField: React.FC<TextFieldProps> = ({

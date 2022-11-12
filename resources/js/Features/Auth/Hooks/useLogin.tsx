@@ -9,7 +9,7 @@ const initialValues = {
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required(),
-  password: Yup.string().required().min(8),
+  password: Yup.string().required(),
 });
 
 const useLogin = () => {
@@ -32,19 +32,26 @@ const useLogin = () => {
     console.log('finish');
   };
 
-  const { handleSubmit, errors, values, setFieldValue, processing, post } =
-    useFormikForm({
-      initialValues,
-      validationSchema,
-      onSubmit: (data) => {
-        post('/auth/login', {
-          data,
-          onSuccess,
-          onError,
-          onFinish,
-        });
-      },
-    });
+  const {
+    handleSubmit,
+    errors,
+    values,
+    setFieldValue,
+    touched,
+    processing,
+    post,
+  } = useFormikForm({
+    initialValues,
+    validationSchema,
+    onSubmit: (data) => {
+      post('/auth/login', {
+        data,
+        onSuccess,
+        onError,
+        onFinish,
+      });
+    },
+  });
 
   return {
     processing,
@@ -52,6 +59,7 @@ const useLogin = () => {
     values,
     setFieldValue,
     handleSubmit,
+    touched,
   };
 };
 

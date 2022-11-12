@@ -37,19 +37,26 @@ const useRegister = () => {
     console.log('finish');
   };
 
-  const { handleSubmit, errors, values, setFieldValue, processing, post } =
-    useFormikForm({
-      initialValues,
-      validationSchema,
-      onSubmit: (data) => {
-        post('/auth/register', {
-          data,
-          onSuccess,
-          onError,
-          onFinish,
-        });
-      },
-    });
+  const {
+    handleSubmit,
+    errors,
+    values,
+    setFieldValue,
+    processing,
+    post,
+    touched,
+  } = useFormikForm({
+    initialValues,
+    validationSchema,
+    onSubmit: (data) => {
+      post('/auth/register', {
+        data,
+        onSuccess,
+        onError,
+        onFinish,
+      });
+    },
+  });
 
   return {
     processing,
@@ -57,6 +64,7 @@ const useRegister = () => {
     values,
     setFieldValue,
     handleSubmit,
+    touched,
   };
 };
 

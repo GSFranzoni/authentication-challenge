@@ -30,6 +30,7 @@ const LoginRegister: React.FC<AppCardProps> = ({ ...props }) => {
     setFieldValue,
     handleSubmit,
     errors,
+    touched,
   } = useRegister();
   return (
     <AppCard {...props} p={10} py={12} borderRadius={20}>
@@ -59,7 +60,7 @@ const LoginRegister: React.FC<AppCardProps> = ({ ...props }) => {
             type="name"
             value={name}
             isReadOnly={processing}
-            hint={errors.name as string}
+            hint={touched.name && (errors.name as string)}
             onChange={(e) => setFieldValue('name', e.target.value)}
           >
             <InputLeftElement>
@@ -71,7 +72,7 @@ const LoginRegister: React.FC<AppCardProps> = ({ ...props }) => {
             type="email"
             value={email}
             isReadOnly={processing}
-            hint={errors.email as string}
+            hint={touched.email && (errors.email as string)}
             onChange={(e) => setFieldValue('email', e.target.value)}
           >
             <InputLeftElement>
@@ -83,7 +84,7 @@ const LoginRegister: React.FC<AppCardProps> = ({ ...props }) => {
             type="password"
             value={password}
             isReadOnly={processing}
-            hint={errors.password as string}
+            hint={touched.password && (errors.password as string)}
             onChange={(e) => setFieldValue('password', e.target.value)}
           >
             <InputLeftElement>
@@ -95,7 +96,7 @@ const LoginRegister: React.FC<AppCardProps> = ({ ...props }) => {
             type="password"
             value={confirmPassword}
             isReadOnly={processing}
-            hint={errors.confirmPassword as string}
+            hint={touched.confirmPassword && (errors.confirmPassword as string)}
             onChange={(e) => setFieldValue('confirmPassword', e.target.value)}
           >
             <InputLeftElement>
