@@ -18,7 +18,7 @@ const useLogin = () => {
   const onSuccess = () => {
     toast({
       title: 'Logged in.',
-      description: "We've logged you in.",
+      description: "We've successfully logged you in.",
       status: 'success',
       duration: 5000,
     });

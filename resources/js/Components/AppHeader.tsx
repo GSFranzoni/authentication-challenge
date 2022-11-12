@@ -16,8 +16,10 @@ import {
 } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { FaUserCircle, MdGroup, TbLogout } from 'react-icons/all';
+import { Inertia } from '@inertiajs/inertia';
 import DevChallengeLogoDark from '@/Assets/Images/devchallenges.svg';
 import DevChallengeLogoLight from '@/Assets/Images/devchallenges-light.svg';
+import useLogout from '@/Features/Auth/Hooks/useLogout';
 
 const AppHeader: React.FC = () => {
   const AppLogo = useColorModeValue(
@@ -25,6 +27,7 @@ const AppHeader: React.FC = () => {
     DevChallengeLogoLight
   );
   const [red] = useToken('colors', ['red.500']);
+  const { logout, processing } = useLogout();
   return (
     <HStack
       w="full"
@@ -56,6 +59,8 @@ const AppHeader: React.FC = () => {
             icon={<TbLogout size={18} color={red} />}
             rounded="md"
             color={red}
+            disabled={processing}
+            onClick={logout}
           >
             Logout
           </MenuItem>
