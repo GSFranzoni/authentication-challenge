@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::middleware('guest')->group(static function () {
     Route::get('/auth/login', [LoginController::class, 'index'])->name('auth.login.index');
+    Route::post('/auth/login', [LoginController::class, 'login'])->name('auth.login');
 });
 
 Route::middleware('auth')->group(static function () {

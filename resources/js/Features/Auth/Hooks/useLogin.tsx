@@ -1,17 +1,18 @@
-import { useForm } from '@inertiajs/inertia-react';
+import React from 'react';
+import * as Yup from 'yup';
+import useFormikForm from '@/Hooks/useFormikForm';
+
+const initialValues = {
+  email: '',
+  password: '',
+};
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string().email().required(),
+  password: Yup.string().required().min(8),
+});
 
 const useLogin = () => {
-  const {
-    data: { email, password },
-    post,
-    setData,
-    processing,
-  } = useForm();
-
-  const setEmail = (value: string) => setData('email', value);
-
-  const setPassword = (value: string) => setData('password', value);
-
   const onSuccess = () => {
     console.log('success');
   };
@@ -24,25 +25,26 @@ const useLogin = () => {
     console.log('finish');
   };
 
-  const login = () => {
-    post('auth/login', {
-      data: {
-        email,
-        password,
+  const { handleSubmit, errors, values, setFieldValue, processing, post } =
+    useFormikForm({
+      initialValues,
+      validationSchema,
+      onSubmit: (data) => {
+        post('/auth/login', {
+          data,
+          onSuccess,
+          onError,
+          onFinish,
+        });
       },
-      onSuccess,
-      onError,
-      onFinish,
     });
-  };
 
   return {
-    email,
-    password,
-    setEmail,
-    setPassword,
-    login,
     processing,
+    errors,
+    values,
+    setFieldValue,
+    handleSubmit,
   };
 };
 

@@ -25,11 +25,25 @@ const LoginForm: React.FC<AppCardProps> = ({ ...props }) => {
     DevChallengeLogoDark,
     DevChallengeLogoLight
   );
-  const { email, password, setEmail, setPassword, login, processing } =
-    useLogin();
+  const {
+    processing,
+    values: { email, password },
+    setFieldValue,
+    handleSubmit,
+    errors,
+  } = useLogin();
   return (
     <AppCard {...props} p={10} py={12} borderRadius={20}>
-      <VStack as="form" onSubmit={login} w="full" alignItems="start" gap={5}>
+      <VStack
+        as="form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}
+        w="full"
+        alignItems="start"
+        gap={5}
+      >
         <Image src={AppLogo} />
         <Text fontSize="lg" fontWeight="medium">
           Login
@@ -40,7 +54,8 @@ const LoginForm: React.FC<AppCardProps> = ({ ...props }) => {
             type="email"
             value={email}
             isReadOnly={processing}
-            onChange={(e) => setEmail(e.target.value)}
+            hint={errors.email as string}
+            onChange={(e) => setFieldValue('email', e.target.value)}
           >
             <InputLeftElement>
               <EmailIcon fontSize={18} />
@@ -51,7 +66,8 @@ const LoginForm: React.FC<AppCardProps> = ({ ...props }) => {
             type="password"
             value={password}
             isReadOnly={processing}
-            onChange={(e) => setPassword(e.target.value)}
+            hint={errors.password as string}
+            onChange={(e) => setFieldValue('password', e.target.value)}
           >
             <InputLeftElement>
               <LockIcon fontSize={18} />
