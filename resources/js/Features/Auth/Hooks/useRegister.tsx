@@ -5,20 +5,25 @@ import useFormikForm from '@/Hooks/useFormikForm';
 const initialValues = {
   email: '',
   password: '',
+  confirmPassword: '',
 };
 
 const validationSchema = Yup.object().shape({
+  name: Yup.string().required(),
   email: Yup.string().email().required(),
   password: Yup.string().required().min(8),
+  confirmPassword: Yup.string()
+    .required()
+    .equals([Yup.ref('password')], 'Passwords must match'),
 });
 
-const useLogin = () => {
+const useRegister = () => {
   const toast = useToast();
 
   const onSuccess = () => {
     toast({
-      title: 'Logged in.',
-      description: "We've logged you in.",
+      title: 'Account created.',
+      description: "We've created your account for you.",
       status: 'success',
       duration: 5000,
     });
@@ -37,7 +42,7 @@ const useLogin = () => {
       initialValues,
       validationSchema,
       onSubmit: (data) => {
-        post('/auth/login', {
+        post('/auth/register', {
           data,
           onSuccess,
           onError,
@@ -55,4 +60,4 @@ const useLogin = () => {
   };
 };
 
-export default useLogin;
+export default useRegister;

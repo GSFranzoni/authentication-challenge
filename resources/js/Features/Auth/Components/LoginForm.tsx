@@ -1,30 +1,27 @@
 import React from 'react';
 import {
   Button,
-  HStack,
   Image,
   InputLeftElement,
-  Link,
   Text,
   useColorModeValue,
   VStack,
 } from '@chakra-ui/react';
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
+import { InertiaLink } from '@inertiajs/inertia-react';
 import AppCard, { AppCardProps } from '@/Components/AppCard';
 import DevChallengeLogoDark from '@/Assets/Images/devchallenges.svg';
 import DevChallengeLogoLight from '@/Assets/Images/devchallenges-light.svg';
 import AppTextField from '@/Components/AppTextField';
-import FacebookLogo from '@/Assets/Images/Facebook.svg';
-import GoogleLogo from '@/Assets/Images/Google.svg';
-import TwitterLogo from '@/Assets/Images/Twitter.svg';
-import GithubLogo from '@/Assets/Images/Github.svg';
 import useLogin from '@/Features/Auth/Hooks/useLogin';
+import SocialProviders from '@/Features/Auth/Components/SocialProviders';
 
 const LoginForm: React.FC<AppCardProps> = ({ ...props }) => {
   const AppLogo = useColorModeValue(
     DevChallengeLogoDark,
     DevChallengeLogoLight
   );
+
   const {
     processing,
     values: { email, password },
@@ -32,6 +29,7 @@ const LoginForm: React.FC<AppCardProps> = ({ ...props }) => {
     handleSubmit,
     errors,
   } = useLogin();
+
   return (
     <AppCard {...props} p={10} py={12} borderRadius={20}>
       <VStack
@@ -90,25 +88,14 @@ const LoginForm: React.FC<AppCardProps> = ({ ...props }) => {
           <Text fontSize="sm" color="gray.500">
             or continue with these social profile
           </Text>
-          <HStack gap={3}>
-            <Link href="/" rounded="full">
-              <Image src={FacebookLogo} />
-            </Link>
-            <Link href="/" rounded="full">
-              <Image src={GoogleLogo} />
-            </Link>
-            <Link href="/" rounded="full">
-              <Image src={TwitterLogo} />
-            </Link>
-            <Link href="/" rounded="full">
-              <Image src={GithubLogo} />
-            </Link>
-          </HStack>
+          <SocialProviders />
           <Text fontSize="sm" color="gray.500">
             Don&apos;t have an account?{' '}
-            <Link href="/" color="blue.600">
-              Register
-            </Link>
+            <InertiaLink href="/auth/register">
+              <Text as="span" color="blue.600" fontWeight="medium">
+                Register
+              </Text>
+            </InertiaLink>
           </Text>
         </VStack>
       </VStack>

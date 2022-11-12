@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->group(static function () {
     Route::get('/auth/login', [LoginController::class, 'index'])->name('auth.login.index');
     Route::post('/auth/login', [LoginController::class, 'login'])->name('auth.login');
+    Route::get('/auth/register', [RegisterController::class, 'index'])->name('auth.register.index');
+    Route::post('/auth/register', [RegisterController::class, 'register'])->name('auth.register');
 });
 
 Route::middleware('auth')->group(static function () {
