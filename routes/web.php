@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -24,4 +25,5 @@ Route::middleware('guest')->group(static function () {
 
 Route::middleware('auth')->group(static function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
+    Route::post('/auth/logout', [LogoutController::class, 'logout'])->name('auth.logout');
 });
