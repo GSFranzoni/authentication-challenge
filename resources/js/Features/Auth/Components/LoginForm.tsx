@@ -39,6 +39,7 @@ const LoginForm: React.FC = () => {
             placeholder="Email"
             type="email"
             value={email}
+            isReadOnly={processing}
             onChange={(e) => setEmail(e.target.value)}
           >
             <InputLeftElement>
@@ -49,6 +50,7 @@ const LoginForm: React.FC = () => {
             placeholder="Password"
             type="password"
             value={password}
+            isReadOnly={processing}
             onChange={(e) => setPassword(e.target.value)}
           >
             <InputLeftElement>
@@ -73,16 +75,16 @@ const LoginForm: React.FC = () => {
             or continue with these social profile
           </Text>
           <HStack gap={3}>
-            <Link href="/">
+            <Link href="/" rounded="full">
               <Image src={FacebookLogo} />
             </Link>
-            <Link href="/">
+            <Link href="/" rounded="full">
               <Image src={GoogleLogo} />
             </Link>
-            <Link href="/">
+            <Link href="/" rounded="full">
               <Image src={TwitterLogo} />
             </Link>
-            <Link href="/">
+            <Link href="/" rounded="full">
               <Image src={GithubLogo} />
             </Link>
           </HStack>
