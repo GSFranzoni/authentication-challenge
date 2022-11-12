@@ -1,12 +1,13 @@
 import React from 'react';
 import { Box, Flex } from '@chakra-ui/react';
+import LoginForm from '@/Features/Auth/Components/LoginForm';
 
-const Home: React.FC = () => {
+const Login: React.FC = () => {
   return (
     <Box as={Flex} alignItems="center" justifyContent="center" height="100%">
-      Home
+      <LoginForm w={500} />
     </Box>
   );
 };
 
-export default Home;
+export default Login;

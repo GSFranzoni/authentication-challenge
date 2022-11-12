@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [HomeController::class, 'index']);
-
-// guest routes
 Route::middleware('guest')->group(static function () {
-    Route::get('/login', [LoginController::class, 'index'])->name('auth.login.index');
+    Route::get('/auth/login', [LoginController::class, 'index'])->name('auth.login.index');
+});
+
+Route::middleware('auth')->group(static function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home.index');
 });

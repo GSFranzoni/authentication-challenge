@@ -10,7 +10,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
-import AppCard from '@/Components/AppCard';
+import AppCard, { AppCardProps } from '@/Components/AppCard';
 import DevChallengeLogoDark from '@/Assets/Images/devchallenges.svg';
 import DevChallengeLogoLight from '@/Assets/Images/devchallenges-light.svg';
 import AppTextField from '@/Components/AppTextField';
@@ -20,7 +20,7 @@ import TwitterLogo from '@/Assets/Images/Twitter.svg';
 import GithubLogo from '@/Assets/Images/Github.svg';
 import useLogin from '@/Features/Auth/Hooks/useLogin';
 
-const LoginForm: React.FC = () => {
+const LoginForm: React.FC<AppCardProps> = ({ ...props }) => {
   const AppLogo = useColorModeValue(
     DevChallengeLogoDark,
     DevChallengeLogoLight
@@ -28,7 +28,7 @@ const LoginForm: React.FC = () => {
   const { email, password, setEmail, setPassword, login, processing } =
     useLogin();
   return (
-    <AppCard w="full" p={10} py={12} borderRadius={20}>
+    <AppCard {...props} p={10} py={12} borderRadius={20}>
       <VStack as="form" onSubmit={login} w="full" alignItems="start" gap={5}>
         <Image src={AppLogo} />
         <Text fontSize="lg" fontWeight="medium">

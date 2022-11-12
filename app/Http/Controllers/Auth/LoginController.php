@@ -9,6 +9,6 @@ class LoginController extends Controller
 {
     public function index(): Response
     {
-        return inertia('Login');
+        return inertia('Auth/Login');
     }
 }
