@@ -18,26 +18,39 @@ import FacebookLogo from '@/Assets/Images/Facebook.svg';
 import GoogleLogo from '@/Assets/Images/Google.svg';
 import TwitterLogo from '@/Assets/Images/Twitter.svg';
 import GithubLogo from '@/Assets/Images/Github.svg';
+import useLogin from '@/Features/Auth/Hooks/useLogin';
 
 const LoginForm: React.FC = () => {
   const AppLogo = useColorModeValue(
     DevChallengeLogoDark,
     DevChallengeLogoLight
   );
+  const { email, password, setEmail, setPassword, login, processing } =
+    useLogin();
   return (
     <AppCard w="full" p={10} py={12} borderRadius={20}>
-      <VStack w="full" alignItems="start" gap={5}>
+      <VStack as="form" onSubmit={login} w="full" alignItems="start" gap={5}>
         <Image src={AppLogo} />
         <Text fontSize="lg" fontWeight="medium">
           Login
         </Text>
         <VStack w="full" gap={2}>
-          <AppTextField placeholder="Email" type="email">
+          <AppTextField
+            placeholder="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          >
             <InputLeftElement>
               <EmailIcon fontSize={18} />
             </InputLeftElement>
           </AppTextField>
-          <AppTextField placeholder="Password" type="password">
+          <AppTextField
+            placeholder="Password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          >
             <InputLeftElement>
               <LockIcon fontSize={18} />
             </InputLeftElement>
@@ -50,6 +63,8 @@ const LoginForm: React.FC = () => {
           w="full"
           color="white"
           fontWeight="medium"
+          isLoading={processing}
+          type="submit"
         >
           Login
         </Button>
