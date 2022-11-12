@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,3 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [HomeController::class, 'index']);
+
+// guest routes
+Route::middleware('guest')->group(static function () {
+    Route::get('/login', [LoginController::class, 'index'])->name('auth.login.index');
+});

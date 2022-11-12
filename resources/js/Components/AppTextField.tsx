@@ -1,23 +1,32 @@
-import React from 'react';
-import { Flex, Input, InputProps, Text } from '@chakra-ui/react';
+import React, { PropsWithChildren } from 'react';
+import { Flex, Input, InputGroup, InputProps, Text } from '@chakra-ui/react';
 
-type TextFieldProps = InputProps & {
-  label: string;
-  hint?: string;
-};
+type TextFieldProps = InputProps &
+  PropsWithChildren & {
+    label?: string;
+    hint?: string;
+  };
 
-const AppTextField: React.FC<TextFieldProps> = ({ label, hint, ...props }) => (
-  <Flex flexDir="column" gap={2}>
-    <Text fontWeight={500} fontSize="sm">
-      {label}
-    </Text>
+const AppTextField: React.FC<TextFieldProps> = ({
+  children,
+  label,
+  hint,
+  ...props
+}) => (
+  <InputGroup as={Flex} flexDir="column" gap={2}>
+    {label && (
+      <Text fontWeight={500} fontSize="sm">
+        {label}
+      </Text>
+    )}
     <Input {...props} />
     {hint && (
       <Text fontSize="xs" color="red.500" fontWeight={500}>
         {hint}
       </Text>
     )}
-  </Flex>
+    {children}
+  </InputGroup>
 );
 
 export default AppTextField;

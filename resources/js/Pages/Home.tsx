@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  Container,
-  Flex,
-} from '@chakra-ui/react';
+import { Container, Flex } from '@chakra-ui/react';
+import LoginForm from '@/Features/Auth/Components/LoginForm';
 
 const Home: React.FC = () => {
   return (
@@ -15,12 +10,7 @@ const Home: React.FC = () => {
       justifyContent="center"
       height="100%"
     >
-      <Alert status="success">
-        <AlertIcon />
-        <AlertDescription>
-          Its working! You can now start building your app.
-        </AlertDescription>
-      </Alert>
+      <LoginForm />
     </Container>
   );
 };
