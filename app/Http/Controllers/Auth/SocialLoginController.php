@@ -59,6 +59,7 @@ class SocialLoginController extends Controller
             'email' => $socialUser->getEmail(),
         ], [
             'name' => $socialUser->getName(),
+            'avatar' => $socialUser->getAvatar(),
             'password' => Uuid::uuid4()->toString(),
         ]);
 
