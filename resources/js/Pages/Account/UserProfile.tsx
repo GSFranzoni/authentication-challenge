@@ -15,7 +15,7 @@ const UserProfile: React.FC = () => {
             Basic info, like your name and photo
           </Text>
         </VStack>
-        <UserProfileComponent width="550px" maxW="95%" />
+        <UserProfileComponent width="600px" maxW="95%" />
       </VStack>
     </MainLayout>
   );

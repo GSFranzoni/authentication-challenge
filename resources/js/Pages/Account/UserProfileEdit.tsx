@@ -9,8 +9,9 @@ const UserProfileEdit: React.FC = () => {
   return (
     <MainLayout>
       <VStack justifyContent="center" height="full" gap={3}>
-        <VStack alignItems="start" width="550px" maxW="95%">
+        <VStack alignItems="start" width="600px" maxW="95%">
           <Button
+            pl={1}
             leftIcon={<ChevronLeftIcon fontSize={18} />}
             as={InertiaLink}
             href="/account/profile"
