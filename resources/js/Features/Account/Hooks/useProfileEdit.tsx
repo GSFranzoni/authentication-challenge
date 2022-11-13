@@ -4,15 +4,17 @@ import * as Yup from 'yup';
 import useFormikForm from '@/Hooks/useFormikForm';
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required('Name is required'),
-  bio: Yup.string().required('Bio is required'),
-  phone: Yup.string().required('Phone is required'),
+  name: Yup.string().required('Name is required').nullable(),
+  bio: Yup.string().required('Bio is required').nullable(),
+  phone: Yup.string().required('Phone is required').nullable(),
   avatar: Yup.string()
     .required('Avatar is required')
-    .url('Avatar must be a valid url'),
+    .url('Avatar must be a valid url')
+    .nullable(),
   password: Yup.string()
     .required()
-    .min(8, 'Password must be at least 8 characters'),
+    .min(8, 'Password must be at least 8 characters')
+    .nullable(),
 });
 
 const useProfileEdit = () => {
