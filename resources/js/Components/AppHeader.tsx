@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { FaUserCircle, MdGroup, TbLogout } from 'react-icons/all';
-import { usePage } from '@inertiajs/inertia-react';
+import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import DevChallengeLogoDark from '@/Assets/Images/devchallenges.svg';
 import DevChallengeLogoLight from '@/Assets/Images/devchallenges-light.svg';
 import useLogout from '@/Features/Auth/Hooks/useLogout';
@@ -53,7 +53,12 @@ const AppHeader: React.FC = () => {
           </HStack>
         </MenuButton>
         <MenuList p={3} as={VStack}>
-          <MenuItem icon={<FaUserCircle size={18} />} rounded="md">
+          <MenuItem
+            as={InertiaLink}
+            href="/account/profile"
+            icon={<FaUserCircle size={18} />}
+            rounded="md"
+          >
             My Profile
           </MenuItem>
           <MenuItem icon={<MdGroup size={18} />} rounded="md">

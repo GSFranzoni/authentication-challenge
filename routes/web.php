@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Account\UserProfileController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -22,12 +23,12 @@ Route::middleware('guest')->group(static function () {
     Route::post('/auth/login', [LoginController::class, 'login'])->name('auth.login');
     Route::get('/auth/register', [RegisterController::class, 'index'])->name('auth.register.index');
     Route::post('/auth/register', [RegisterController::class, 'register'])->name('auth.register');
+    Route::get('/auth/social/{provider}', [SocialLoginController::class, 'redirect'])->name('auth.social.redirect');
+    Route::get('/auth/social/{provider}/callback', [SocialLoginController::class, 'callback'])->name('auth.social.callback');
 });
-
-Route::get('/auth/social/{provider}', [SocialLoginController::class, 'redirect'])->name('auth.social.redirect');
-Route::get('/auth/social/{provider}/callback', [SocialLoginController::class, 'callback'])->name('auth.social.callback');
 
 Route::middleware('auth')->group(static function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
+    Route::get('/account/profile', [UserProfileController::class, 'index'])->name('account.profile.index');
     Route::post('/auth/logout', [LogoutController::class, 'logout'])->name('auth.logout');
 });
