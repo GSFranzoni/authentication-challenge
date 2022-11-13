@@ -10,11 +10,7 @@ const Login: React.FC = () => {
       justifyContent="center"
       height="100%"
     >
-      <LoginForm
-        w={380}
-        border={['none', '1px solid']}
-        shadow={['none', 'md']}
-      />
+      <LoginForm w={380} border="none" shadow={['none', 'md']} />
     </Box>
   );
 };
