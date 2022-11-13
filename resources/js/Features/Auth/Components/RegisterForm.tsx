@@ -33,7 +33,7 @@ const LoginRegister: React.FC<AppCardProps> = ({ ...props }) => {
     touched,
   } = useRegister();
   return (
-    <AppCard {...props} p={10} py={12} borderRadius={20}>
+    <AppCard {...props} p={[2, 10]} py={[6, 12]} borderRadius={20}>
       <VStack
         as="form"
         onSubmit={(e) => {
