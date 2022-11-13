@@ -1,15 +1,19 @@
 import React from 'react';
-import { Button, Flex, HStack, Text, Textarea, VStack } from '@chakra-ui/react';
-import { usePage } from '@inertiajs/inertia-react';
+import {
+  Button,
+  Flex,
+  HStack,
+  Text,
+  Textarea,
+  Tooltip,
+  VStack,
+} from '@chakra-ui/react';
 import { AiFillCamera } from 'react-icons/all';
 import AppCard, { AppCardProps } from '@/Components/AppCard';
 import AppTextField from '@/Components/AppTextField';
 import useProfileEdit from '@/Features/Account/Hooks/useProfileEdit';
 
 export const UserProfileEdit: React.FC<AppCardProps> = ({ ...props }) => {
-  const {
-    auth: { user },
-  } = usePage().props as never;
   const {
     processing,
     values: { name, avatar, bio, email, password, phone },
@@ -102,17 +106,21 @@ export const UserProfileEdit: React.FC<AppCardProps> = ({ ...props }) => {
               onChange={(e) => setFieldValue('phone', e.target.value)}
               hint={hasTouched && (errors.phone as string)}
             />
-            <AppTextField
-              label="Email"
-              type="email"
-              placeholder="Enter your email..."
-              value={email}
-              onChange={(e) => setFieldValue('email', e.target.value)}
-              color="gray.600"
-              isReadOnly
-              isDisabled
-              hint={false}
-            />
+            <Tooltip hasArrow label="You can't change your email address">
+              <Flex w="full">
+                <AppTextField
+                  label="Email"
+                  type="email"
+                  placeholder="Enter your email..."
+                  value={email}
+                  onChange={(e) => setFieldValue('email', e.target.value)}
+                  color="gray.600"
+                  isReadOnly
+                  isDisabled
+                  hint={false}
+                />
+              </Flex>
+            </Tooltip>
             <AppTextField
               label="Password"
               type="password"
