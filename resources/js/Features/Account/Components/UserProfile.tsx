@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Divider, HStack, Image, Text, VStack } from '@chakra-ui/react';
 import { usePage } from '@inertiajs/inertia-react';
+import { Inertia } from '@inertiajs/inertia';
 import AppCard, { AppCardProps } from '@/Components/AppCard';
 
 export const UserProfile: React.FC<AppCardProps> = ({ ...props }) => {
@@ -17,7 +18,7 @@ export const UserProfile: React.FC<AppCardProps> = ({ ...props }) => {
       borderWidth={['none', '1px']}
       borderRadius={['none', 'lg']}
     >
-      <HStack justifyContent="space-between" p={5} px={[2, 8]}>
+      <HStack justifyContent="space-between" py={[2, 5]} px={[2, 8]}>
         <VStack alignItems="start">
           <Text fontSize="2xl" fontWeight="normal">
             Profile
@@ -28,13 +29,14 @@ export const UserProfile: React.FC<AppCardProps> = ({ ...props }) => {
         </VStack>
         <Button
           variant="outline"
-          colorScheme="gray"
-          color="gray.500"
           fontWeight="normal"
           rounded="lg"
           size="sm"
           py={3}
           px={8}
+          onClick={() => {
+            Inertia.visit('/account/profile/edit');
+          }}
         >
           Edit
         </Button>
@@ -153,6 +155,7 @@ export const UserProfile: React.FC<AppCardProps> = ({ ...props }) => {
             ********
           </Text>
         </HStack>
+        <Divider w="full" />
       </VStack>
     </AppCard>
   );

@@ -37,7 +37,7 @@ const useLogin = () => {
     errors,
     values,
     setFieldValue,
-    touched,
+    hasTouched,
     processing,
     post,
   } = useFormikForm({
@@ -59,7 +59,7 @@ const useLogin = () => {
     values,
     setFieldValue,
     handleSubmit,
-    touched,
+    hasTouched,
   };
 };
 

@@ -30,5 +30,7 @@ Route::middleware('guest')->group(static function () {
 Route::middleware('auth')->group(static function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
     Route::get('/account/profile', [UserProfileController::class, 'index'])->name('account.profile.index');
+    Route::get('/account/profile/edit', [UserProfileController::class, 'edit'])->name('account.profile.edit');
+    Route::patch('/account/profile', [UserProfileController::class, 'update'])->name('account.profile.update');
     Route::post('/auth/logout', [LogoutController::class, 'logout'])->name('auth.logout');
 });

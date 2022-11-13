@@ -26,7 +26,7 @@ const LoginForm: React.FC<AppCardProps> = ({ ...props }) => {
     processing,
     values: { email, password },
     handleSubmit,
-    touched,
+    hasTouched,
     errors,
     setFieldValue,
   } = useLogin();
@@ -53,7 +53,7 @@ const LoginForm: React.FC<AppCardProps> = ({ ...props }) => {
             type="email"
             value={email}
             isReadOnly={processing}
-            hint={touched.email && (errors.email as string)}
+            hint={hasTouched && (errors.email as string)}
             onChange={(e) => setFieldValue('email', e.target.value)}
           >
             <InputLeftElement>
@@ -65,7 +65,7 @@ const LoginForm: React.FC<AppCardProps> = ({ ...props }) => {
             type="password"
             value={password}
             isReadOnly={processing}
-            hint={touched.password && (errors.password as string)}
+            hint={hasTouched && (errors.password as string)}
             onChange={(e) => setFieldValue('password', e.target.value)}
           >
             <InputLeftElement>
