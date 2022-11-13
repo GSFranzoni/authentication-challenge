@@ -7,7 +7,7 @@ import AppCard, { AppCardProps } from '@/Components/AppCard';
 export const UserProfile: React.FC<AppCardProps> = ({ ...props }) => {
   const {
     auth: {
-      user: { name, avatar, email },
+      user: { name, avatar, email, bio, phone },
     },
   } = usePage().props as never;
   return (
@@ -69,13 +69,18 @@ export const UserProfile: React.FC<AppCardProps> = ({ ...props }) => {
         >
           <Text
             fontSize="xs"
-            color="gray.400"
             fontWeight="300"
+            color={name ? 'gray.400' : 'red.400'}
             width={[75, 150]}
           >
             NAME
           </Text>
-          <Text fontSize="sm" fontWeight="normal" noOfLines={1}>
+          <Text
+            fontSize="sm"
+            color={name ? 'gray.400' : 'red.400'}
+            fontWeight="normal"
+            noOfLines={1}
+          >
             {name}
           </Text>
         </HStack>
@@ -88,14 +93,19 @@ export const UserProfile: React.FC<AppCardProps> = ({ ...props }) => {
         >
           <Text
             fontSize="xs"
-            color="gray.400"
+            color={bio ? 'gray.400' : 'red.400'}
             fontWeight="300"
             width={[75, 150]}
           >
             BIO
           </Text>
-          <Text fontSize="sm" fontWeight="normal" noOfLines={1}>
-            I am a web developer and I love to code
+          <Text
+            fontSize="sm"
+            color={bio ? 'gray.400' : 'red.400'}
+            fontWeight="normal"
+            noOfLines={1}
+          >
+            {bio || '-'}
           </Text>
         </HStack>
         <Divider w="full" />
@@ -107,14 +117,19 @@ export const UserProfile: React.FC<AppCardProps> = ({ ...props }) => {
         >
           <Text
             fontSize="xs"
-            color="gray.400"
+            color={phone ? 'gray.400' : 'red.400'}
             fontWeight="300"
             width={[75, 150]}
           >
             PHONE
           </Text>
-          <Text fontSize="sm" fontWeight="normal" noOfLines={1}>
-            0123456789
+          <Text
+            fontSize="sm"
+            color={phone ? 'gray.400' : 'red.400'}
+            fontWeight="normal"
+            noOfLines={1}
+          >
+            {phone || '-'}
           </Text>
         </HStack>
         <Divider w="full" />

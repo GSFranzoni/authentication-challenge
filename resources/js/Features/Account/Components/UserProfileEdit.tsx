@@ -75,7 +75,7 @@ export const UserProfileEdit: React.FC<AppCardProps> = ({ ...props }) => {
                   justifyContent="center"
                   alignItems="center"
                 >
-                  <AiFillCamera size="25" color="gray" />
+                  <AiFillCamera size="25" color="white" />
                 </Flex>
               }
             >

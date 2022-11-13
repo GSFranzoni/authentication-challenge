@@ -36,8 +36,13 @@ class UserProfileController extends Controller
     {
         /** @var User $user */
         $user = Auth::user();
-        $user?->update($request->validated());
+        if ($user?->update($request->validated())) {
+            return redirect()->route('account.profile.index');
+        }
         return redirect()
-            ->route('account.profile.index');
+            ->back()
+            ->withErrors([
+                'name' => __('account.profile.update.failed'),
+            ]);
     }
 }
