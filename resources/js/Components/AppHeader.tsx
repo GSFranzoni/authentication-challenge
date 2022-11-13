@@ -38,18 +38,24 @@ const AppHeader: React.FC = () => {
       w="full"
       height={50}
       justifyContent="space-between"
-      p={10}
+      px={[5, 7, 9]}
+      py={8}
       alignItems="center"
     >
       <Image src={AppLogo} />
       <Menu>
         <MenuButton cursor="pointer" minW={0}>
           <HStack>
-            <Avatar src={avatar} size="sm" />
-            <Text fontSize="sm" fontWeight="medium" textDecoration="none">
+            <Image src={avatar} borderRadius="md" w={8} />
+            <Text
+              display={['none', 'block']}
+              fontSize="sm"
+              fontWeight="medium"
+              textDecoration="none"
+            >
               {name}
             </Text>
-            <ChevronDownIcon />
+            <ChevronDownIcon display={['none', 'block']} />
           </HStack>
         </MenuButton>
         <MenuList p={3} as={VStack}>
