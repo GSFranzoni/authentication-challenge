@@ -42,7 +42,9 @@ const AppHeader: React.FC = () => {
       py={8}
       alignItems="center"
     >
-      <Image src={AppLogo} />
+      <InertiaLink href="/">
+        <Image src={AppLogo} />
+      </InertiaLink>
       <Menu>
         <MenuButton cursor="pointer" minW={0}>
           <HStack>

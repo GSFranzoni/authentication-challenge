@@ -6,6 +6,7 @@ import { InertiaProgress } from '@inertiajs/progress';
 import { ChakraProvider } from '@chakra-ui/react';
 import { createRoot } from 'react-dom/client';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import theme from '@/theme';
 
 createInertiaApp({
   resolve: (name) => {
@@ -17,7 +18,7 @@ createInertiaApp({
   setup({ el, App, props }) {
     const root = createRoot(el);
     root.render(
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <App {...props} />
       </ChakraProvider>
     );
