@@ -48,7 +48,15 @@ const AppHeader: React.FC = () => {
       <Menu>
         <MenuButton cursor="pointer" minW={0}>
           <HStack>
-            <Image src={avatar} borderRadius="md" w={8} h={8} />
+            <Image
+              src={
+                avatar ||
+                'https://gravatar.com/avatar/7121ccc404662c9995f500fcba5879bd?s=400&d=robohash&r=x'
+              }
+              borderRadius="md"
+              w={8}
+              h={8}
+            />
             <Text
               display={['none', 'block']}
               fontSize="sm"
