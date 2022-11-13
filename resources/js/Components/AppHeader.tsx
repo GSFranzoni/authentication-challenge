@@ -16,12 +16,17 @@ import {
 } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { FaUserCircle, MdGroup, TbLogout } from 'react-icons/all';
-import { Inertia } from '@inertiajs/inertia';
+import { usePage } from '@inertiajs/inertia-react';
 import DevChallengeLogoDark from '@/Assets/Images/devchallenges.svg';
 import DevChallengeLogoLight from '@/Assets/Images/devchallenges-light.svg';
 import useLogout from '@/Features/Auth/Hooks/useLogout';
 
 const AppHeader: React.FC = () => {
+  const {
+    auth: {
+      user: { name, avatar },
+    },
+  } = usePage().props as never;
   const AppLogo = useColorModeValue(
     DevChallengeLogoDark,
     DevChallengeLogoLight
@@ -40,9 +45,9 @@ const AppHeader: React.FC = () => {
       <Menu>
         <MenuButton cursor="pointer" minW={0}>
           <HStack>
-            <Avatar size="sm" />
+            <Avatar src={avatar} size="sm" />
             <Text fontSize="sm" fontWeight="medium" textDecoration="none">
-              John Doe
+              {name}
             </Text>
             <ChevronDownIcon />
           </HStack>
