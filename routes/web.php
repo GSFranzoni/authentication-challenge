@@ -34,5 +34,6 @@ Route::middleware('auth')->group(static function () {
     Route::get('/account/profile/edit', [UserProfileController::class, 'edit'])->name('account.profile.edit');
     Route::patch('/account/profile', [UserProfileController::class, 'update'])->name('account.profile.update');
     Route::post('/account/profile/avatar', [AvatarUploadController::class, 'upload'])->name('account.profile.avatar.upload');
+    Route::get('/account/profile/avatar', static fn() => redirect()->route('account.profile.edit'));
     Route::post('/auth/logout', [LogoutController::class, 'logout'])->name('auth.logout');
 });
