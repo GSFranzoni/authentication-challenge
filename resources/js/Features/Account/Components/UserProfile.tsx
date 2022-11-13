@@ -58,7 +58,7 @@ export const UserProfile: React.FC<AppCardProps> = ({ ...props }) => {
           >
             PHOTO
           </Text>
-          <Image src={avatar} borderRadius="md" w={12} />
+          <Image src={avatar} borderRadius="md" w={12} h={12} />
         </HStack>
         <Divider w="full" />
         <HStack

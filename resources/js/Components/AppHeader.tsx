@@ -46,7 +46,7 @@ const AppHeader: React.FC = () => {
       <Menu>
         <MenuButton cursor="pointer" minW={0}>
           <HStack>
-            <Image src={avatar} borderRadius="md" w={8} />
+            <Image src={avatar} borderRadius="md" w={8} h={8} />
             <Text
               display={['none', 'block']}
               fontSize="sm"

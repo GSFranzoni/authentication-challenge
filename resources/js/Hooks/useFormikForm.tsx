@@ -30,6 +30,7 @@ const useFormikForm = ({ ...props }: FormikConfig<FormikValues>) => {
     processing: inertia.processing,
     values: formik.values,
     setFieldValue: formik.setFieldValue,
+    setFieldError: formik.setFieldError,
     touched: formik.touched,
     hasTouched,
   };

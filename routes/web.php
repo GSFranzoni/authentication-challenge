@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Account\AvatarUploadController;
 use App\Http\Controllers\Account\UserProfileController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -32,5 +33,6 @@ Route::middleware('auth')->group(static function () {
     Route::get('/account/profile', [UserProfileController::class, 'index'])->name('account.profile.index');
     Route::get('/account/profile/edit', [UserProfileController::class, 'edit'])->name('account.profile.edit');
     Route::patch('/account/profile', [UserProfileController::class, 'update'])->name('account.profile.update');
+    Route::post('/account/profile/avatar', [AvatarUploadController::class, 'upload'])->name('account.profile.avatar.upload');
     Route::post('/auth/logout', [LogoutController::class, 'logout'])->name('auth.logout');
 });

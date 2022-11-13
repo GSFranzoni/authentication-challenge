@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Button,
   Flex,
   HStack,
+  Input,
+  Spinner,
   Text,
   Textarea,
   Tooltip,
@@ -12,6 +14,7 @@ import { AiFillCamera } from 'react-icons/all';
 import AppCard, { AppCardProps } from '@/Components/AppCard';
 import AppTextField from '@/Components/AppTextField';
 import useProfileEdit from '@/Features/Account/Hooks/useProfileEdit';
+import useUploadAvatar from '@/Features/Account/Hooks/useUploadAvatar';
 
 export const UserProfileEdit: React.FC<AppCardProps> = ({ ...props }) => {
   const {
@@ -21,7 +24,29 @@ export const UserProfileEdit: React.FC<AppCardProps> = ({ ...props }) => {
     hasTouched,
     errors,
     handleSubmit,
+    setFieldError,
   } = useProfileEdit();
+
+  const avatarInputRef = React.useRef<HTMLInputElement>(null);
+
+  const { upload, uploading } = useUploadAvatar({
+    onSuccess: (response) => {
+      setFieldValue('avatar', response.props?.avatar);
+    },
+    onError: (error) => {
+      setFieldError('avatar', error?.file);
+    },
+  });
+
+  const handleChooseAvatar = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const selected = event.target.files?.item(0);
+    if (!selected) {
+      return;
+    }
+    upload(selected);
+  };
 
   return (
     <AppCard
@@ -53,7 +78,15 @@ export const UserProfileEdit: React.FC<AppCardProps> = ({ ...props }) => {
           </VStack>
         </HStack>
         <VStack alignItems="start" gap={3} w="full">
-          <HStack>
+          <HStack gap={1}>
+            <Input
+              ref={avatarInputRef}
+              type="file"
+              name="avatar"
+              accept="image/*"
+              display="none"
+              onChange={handleChooseAvatar}
+            />
             <Button
               variant="ghost"
               fontWeight="normal"
@@ -65,6 +98,7 @@ export const UserProfileEdit: React.FC<AppCardProps> = ({ ...props }) => {
               px={0}
               pr={5}
               gap={3}
+              onClick={() => avatarInputRef.current?.click()}
               leftIcon={
                 <Flex
                   backgroundImage={avatar}
@@ -81,7 +115,13 @@ export const UserProfileEdit: React.FC<AppCardProps> = ({ ...props }) => {
             >
               CHANGE PHOTO
             </Button>
+            {uploading && <Spinner />}
           </HStack>
+          {errors.avatar && (
+            <Text fontSize="xs" color="red.500" fontWeight={500}>
+              {errors?.avatar as string}
+            </Text>
+          )}
           <VStack alignItems="start" w="full" gap={3}>
             <AppTextField
               label="Name"

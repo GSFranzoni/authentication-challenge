@@ -52,6 +52,7 @@ const useProfileEdit = () => {
     setFieldValue,
     processing,
     hasTouched,
+    setFieldError,
   } = useFormikForm({
     initialValues: user,
     validationSchema,
@@ -72,6 +73,7 @@ const useProfileEdit = () => {
     setFieldValue,
     processing,
     hasTouched,
+    setFieldError,
   };
 };
 
