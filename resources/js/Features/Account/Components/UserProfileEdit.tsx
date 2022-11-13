@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Button,
   Flex,
@@ -8,6 +8,7 @@ import {
   Text,
   Textarea,
   Tooltip,
+  useColorModeValue,
   VStack,
 } from '@chakra-ui/react';
 import { AiFillCamera } from 'react-icons/all';
@@ -88,7 +89,7 @@ export const UserProfileEdit: React.FC<AppCardProps> = ({ ...props }) => {
               onChange={handleChooseAvatar}
             />
             <Button
-              variant="ghost"
+              variant="outline"
               fontWeight="normal"
               color="gray.500"
               fontSize="sm"
@@ -101,7 +102,10 @@ export const UserProfileEdit: React.FC<AppCardProps> = ({ ...props }) => {
               onClick={() => avatarInputRef.current?.click()}
               leftIcon={
                 <Flex
-                  backgroundImage={avatar}
+                  backgroundImage={
+                    avatar ||
+                    'https://gravatar.com/avatar/7121ccc404662c9995f500fcba5879bd?s=400&d=robohash&r=x'
+                  }
                   backgroundSize="cover"
                   w="55px"
                   h="55px"
