@@ -23,7 +23,7 @@ class RegisterController extends Controller
     {
         $credentials = $request->only('name', 'email', 'password');
 
-        User::firstOrCreate($credentials);
+        User::create($credentials);
 
         if (auth()->attempt($credentials)) {
             return redirect()->route('home.index');

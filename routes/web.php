@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,9 @@ Route::middleware('guest')->group(static function () {
     Route::get('/auth/register', [RegisterController::class, 'index'])->name('auth.register.index');
     Route::post('/auth/register', [RegisterController::class, 'register'])->name('auth.register');
 });
+
+Route::get('/auth/social/{provider}', [SocialLoginController::class, 'redirect'])->name('auth.social.redirect');
+Route::get('/auth/social/{provider}/callback', [SocialLoginController::class, 'callback'])->name('auth.social.callback');
 
 Route::middleware('auth')->group(static function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');

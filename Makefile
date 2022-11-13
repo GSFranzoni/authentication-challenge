@@ -38,7 +38,7 @@ init: ## Start a new develop environment
 	$(MAKE) permissions
 
 keys: ## Generate secret keys
-	docker exec -it app-nginx php artisan key:generate
+	docker exec app-nginx bash -c "su -c 'php artisan key:generate' application"
 
 ##@ Docker actions
 
@@ -83,29 +83,32 @@ node: ## Start mysql bash
 ##@ Database tools
 
 migration: ## Create migration file
-	docker exec -it app-nginx php artisan make:migration $(name)
+	docker exec app-nginx bash -c "su -c 'php artisan make:migration $(name)' application"
 
 migrate: ## Perform migrations
-	docker exec -it app-nginx php artisan migrate
+	docker exec app-nginx bash -c "su -c 'php artisan migrate' application"
 
 fresh: ## Perform fresh migrations
-	docker exec -it app-nginx php artisan migrate:fresh
+	docker exec app-nginx bash -c "su -c 'php artisan migrate:fresh' application"
 
 rollback: ## Rollback migration
-	docker exec -it app-nginx php artisan migrate:rollback
+	docker exec app-nginx bash -c "su -c 'php artisan migrate:rollback' application"
 
 ##@ Composer
 
 install: ## Composer install dependencies
-	docker exec -it app-nginx composer install
+	docker exec app-nginx bash -c "su -c 'composer install' application"
 
 autoload: ## Run the composer dump
-	docker exec -it app-nginx composer dump-autoload
+	docker exec app-nginx bash -c "su -c 'composer dump-autoload' application"
+
+require: ## Run the composer require
+	docker exec app-nginx bash -c "su -c 'composer require $(package)' application"
 
 ##@ Queue
 
 queue: ## Listen queue
-	docker exec -it app-nginx php artisan queue:listen
+	docker exec app-nginx bash -c "su -c 'php artisan queue:listen' application"
 
 ##@ Permissions
 
@@ -115,4 +118,15 @@ permissions: ## Set permissions
 ##@ Storage Link
 
 link: ## Set permissions
-	docker exec -it app-nginx php artisan storage:link
+	docker exec app-nginx bash -c "su -c 'php artisan storage:link' application"
+
+##@ Eloquent
+
+model: ## Create model
+	docker exec app-nginx bash -c "su -c 'php artisan make:model $(name) --migration' application"
+
+controller: ## Create controller
+	docker exec app-nginx bash -c "su -c 'php artisan make:controller $(name)' application"
+
+request: ## Create request
+	docker exec app-nginx bash -c "su -c 'php artisan make:request $(name)' application"
