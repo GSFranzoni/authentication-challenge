@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-  Avatar,
-  Button,
   Divider,
   HStack,
   Image,
@@ -10,11 +8,12 @@ import {
   MenuItem,
   MenuList,
   Text,
+  useColorMode,
   useColorModeValue,
   useToken,
   VStack,
 } from '@chakra-ui/react';
-import { ChevronDownIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { FaUserCircle, MdGroup, TbLogout } from 'react-icons/all';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import DevChallengeLogoDark from '@/Assets/Images/devchallenges.svg';
@@ -33,6 +32,7 @@ const AppHeader: React.FC = () => {
   );
   const [red] = useToken('colors', ['red.500']);
   const { logout, processing } = useLogout();
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <HStack
       w="full"
@@ -69,6 +69,14 @@ const AppHeader: React.FC = () => {
           </MenuItem>
           <MenuItem icon={<MdGroup size={18} />} rounded="md">
             Group Chat
+          </MenuItem>
+          <Divider />
+          <MenuItem
+            onClick={toggleColorMode}
+            icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+            rounded="md"
+          >
+            {colorMode === 'light' ? 'Dark Mode' : 'Light Mode'}
           </MenuItem>
           <Divider />
           <MenuItem
