@@ -7,15 +7,12 @@ use Illuminate\Support\Facades\Storage;
 use Inertia\Controller;
 use Inertia\Response;
 use Inertia\ResponseFactory;
-use Ramsey\Uuid\Uuid;
 
 class AvatarUploadController extends Controller
 {
     public function upload(AvatarUploadRequest $request): Response|ResponseFactory
     {
-        $filename = Uuid::uuid1()->toString() . '.' . $request->file('file')?->extension();
-
-        $path = $request->file('file')?->storeAs('files', $filename, [
+        $path = $request->file('file')?->store('avatars', [
             'disk' => 's3',
             'expires' => now()->addMinutes(5),
         ]);
