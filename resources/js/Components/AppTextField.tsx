@@ -32,7 +32,7 @@ const AppTextfield: React.FC<TextFieldProps> = ({
     )}
     <Input
       as={as}
-      borderColor={hint ? 'red.500' : 'gray.300'}
+      borderColor={hint ? 'red.500' : undefined}
       _placeholder={{ fontSize: 'sm', fontWeight: 'light' }}
       {...props}
     />
