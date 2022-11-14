@@ -24,8 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (config('app.env') === 'production') {
-            Schema::defaultStringLength(191);
-        }
+        Schema::defaultStringLength(191);
     }
 }
