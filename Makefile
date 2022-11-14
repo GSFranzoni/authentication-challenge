@@ -130,3 +130,6 @@ controller: ## Create controller
 
 request: ## Create request
 	docker exec app-nginx bash -c "su -c 'php artisan make:request $(name)' application"
+
+middleware: ## Create middleware
+	docker exec app-nginx bash -c "su -c 'php artisan make:middleware $(name)' application"
