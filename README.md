@@ -1,4 +1,4 @@
-# Image Uploader
+# Authentication Challenge
 
 ### Challenge
 Simple authentication app made with **Laravel**, **Socialite**, **React** and **Inertia JS**.
