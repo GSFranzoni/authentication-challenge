@@ -33,4 +33,4 @@ make init
 It will install all dependencies and start the project. You can access the project on [http://localhost](http://localhost).
 
 ### Demo
-You can see a demo of the project [here](http://authentication-challenge.herokuapp.com/).
+You can see a demo of the project [here](https://authentication.gsfranzoni.me/).
